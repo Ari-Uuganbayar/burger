@@ -3,10 +3,10 @@ import css from "./style.module.css";
 
 import Shadow from "../Shadow";
 
-const index = (props) => {
+const Modal = (props) => {
   return (
     <div className="">
-      <Shadow show={props.show} closeConfirmModal={props.closeConfirmModal} />
+      <Shadow show={props.show} onClick={props.closeConfirmModal} />
       <div
         className={css.modal}
         style={{
@@ -20,4 +20,4 @@ const index = (props) => {
   );
 };
 
-export default index;
+export default Modal;

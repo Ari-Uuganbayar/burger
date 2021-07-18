@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import css from "./style.module.css";
+import axios from "../../axios-order";
 
 import Burger from "../../components/Burger";
 import BurgerControls from "../../components/BuildControls";
 import OrderSummary from "../../components/OrderSummary";
 import Modal from "../../components/General/Modal";
+import Spinner from "../../components/General/Spinner";
 
 const INGREDIENT_PRICES = { salad: 150, cheese: 200, bacon: 800, meat: 1500 };
 const INGREDIENT_NAMES = {
@@ -14,7 +15,7 @@ const INGREDIENT_NAMES = {
   meat: "Үхрийн мах",
 };
 
-class BurgerBuilder extends Component {
+class BurgerPage extends Component {
   state = {
     ingredients: {
       salad: 0,
@@ -26,6 +27,8 @@ class BurgerBuilder extends Component {
     purchasing: false,
     confirmOrder: false,
   };
+
+  componentDidMount() {}
 
   addIngredient = (type) => {
     const newIngredient = { ...this.state.ingredients };
@@ -59,7 +62,32 @@ class BurgerBuilder extends Component {
   };
 
   orderContinue = () => {
-    console.log("continue order daragdlaa.");
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   totalPrice: this.state.totalPrice,
+    //   address: {
+    //     name: "Ari",
+    //     city: "Erdenet",
+    //     street: "6-17-60",
+    //   },
+    // };
+    // this.setState({ loading: true });
+    // axios()
+    //   .post("/order.json", order)
+    //   .finally(() => {
+    //     this.setState({ loading: false });
+    //   });
+    const param = [];
+    for (let item in this.state.ingredients) {
+      param.push(item + "=" + this.state.ingredients[item]);
+    }
+    const query = param.join("&");
+
+    this.props.history.push({
+      pathname: "/ship",
+      search: query,
+    });
+    this.closeConfirmModal();
   };
 
   render() {
@@ -74,13 +102,17 @@ class BurgerBuilder extends Component {
           show={this.state.confirmOrder}
           closeConfirmModal={this.closeConfirmModal}
         >
-          <OrderSummary
-            totalPrice={this.state.totalPrice}
-            ingredients={this.state.ingredients}
-            ingredientNames={INGREDIENT_NAMES}
-            orderCancel={this.closeConfirmModal}
-            orderContinue={this.orderContinue}
-          />
+          {this.state.loading ? (
+            <Spinner />
+          ) : (
+            <OrderSummary
+              totalPrice={this.state.totalPrice}
+              ingredients={this.state.ingredients}
+              ingredientNames={INGREDIENT_NAMES}
+              orderCancel={this.closeConfirmModal}
+              orderContinue={this.orderContinue}
+            />
+          )}
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BurgerControls
@@ -98,4 +130,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder;
+export default BurgerPage;

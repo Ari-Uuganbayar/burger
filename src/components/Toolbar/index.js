@@ -1,14 +1,18 @@
 import React from "react";
-import style from "./style.module.css";
+import css from "./style.module.css";
 
 import Logo from "../Logo";
+import Menu from "../Menu";
+import MenuHamburger from "../MenuHamburger";
 
-const Toolbar = () => {
+const Toolbar = (props) => {
   return (
-    <header className={style.toolbar}>
-      <div className="">Hamburger</div>
+    <header className={css.toolbar}>
+      <MenuHamburger toggleSidebar={props.toggleSidebar} />
       <Logo />
-      <div className="">Цэс</div>
+      <nav className={css.hideOnMobile}>
+        <Menu />
+      </nav>
     </header>
   );
 };

@@ -3,7 +3,7 @@ import css from "./style.module.css";
 
 import BuildControl from "../BuildControl";
 
-const index = (props) => {
+const BuildControls = (props) => {
   return (
     <div className={css.buildControls}>
       <h1> Бургерийн үнэ: {props.totalPrice}₮ </h1>
@@ -15,7 +15,7 @@ const index = (props) => {
           addIngredient={props.addIngredient}
           removeIngredient={props.removeIngredient}
           type={item}
-          text={Object.keys(props.ingredientNames)[item]}
+          text={props.ingredientNames[item]}
         />
       ))}
 
@@ -30,4 +30,4 @@ const index = (props) => {
   );
 };
 
-export default index;
+export default BuildControls;

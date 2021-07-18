@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./style.module.css";
 
-const index = (props) => {
+const BuildControl = (props) => {
   return (
     <div className={css.buildControl}>
       <div className={css.label}> {props.text} </div>
@@ -24,4 +24,4 @@ const index = (props) => {
   );
 };
 
-export default index;
+export default BuildControl;

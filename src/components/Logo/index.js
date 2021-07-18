@@ -3,7 +3,7 @@ import css from "./style.module.css";
 
 import logo from "../../assets/images/logo.jpg";
 
-const index = () => {
+const Logo = () => {
   return (
     <div className={css.logo}>
       <img src={logo} alt="" />
@@ -11,4 +11,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Logo;

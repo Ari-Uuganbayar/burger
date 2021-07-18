@@ -1,10 +1,10 @@
 import React from "react";
 import css from "./style.module.css";
 
-const index = (props) => {
+const Shadow = (props) => {
   return props.show ? (
-    <div className={css.shadow} onClick={props.closeConfirmModal}></div>
+    <div className={css.shadow} onClick={props.onClick}></div>
   ) : null;
 };
 
-export default index;
+export default Shadow;

@@ -1,9 +1,8 @@
 import React from "react";
-import css from "./style.module.css";
 
 import Button from "../General/Button";
 
-const index = (props) => {
+const OrderSummary = (props) => {
   return (
     <div>
       <h3> Таны захиалга</h3>
@@ -30,4 +29,4 @@ const index = (props) => {
   );
 };
 
-export default index;
+export default OrderSummary;
